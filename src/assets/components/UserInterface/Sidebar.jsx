@@ -3,10 +3,9 @@ import { useContext } from "react";
 import Button from "../Utilities/Button.jsx"
 import { ProjectContext } from "../../../store/project-context.jsx";
 
-export default function Sidebar({
-}) {
+export default function Sidebar({ children }) {
     // Context 
-    const { projects, startAddProject, selectProject, selectedProjectId }  = useContext(ProjectContext);
+    const { startAddProject, selectedProjectId }  = useContext(ProjectContext);
 
     return (
         <aside className="w-1/3 px-8 py-16 bg-blue-400 text-stone-50 md:w-72 rounded-r-xl">
@@ -20,26 +19,7 @@ export default function Sidebar({
                 </Button>
             </div>
             <ul className="mt-2">
-                {projects.map((project) => { 
-                    let cssClasses="w-full text-left px-2 py-1 rounded-sm my-1 bg-blue-600 hover:text-stone-100 hover:bg-blue-700"
-                    
-                    if (project.id === selectedProjectId) {
-                        cssClasses += ' bg-blue-700 text-stone-100'
-                    } else {
-                        cssClasses += ' text-stone-300'
-                    }
-                    return (
-                        <li key={project.id}>
-                            <button 
-                                className={cssClasses}
-                                onClick={() => selectProject(project.id)}
-                                disabled={selectedProjectId === null}
-                            >
-                                {project.title}
-                            </button>
-                        </li>
-                    );           
-                })}
+                {children}
             </ul>
         </aside>
     );

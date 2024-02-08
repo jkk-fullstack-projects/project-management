@@ -139,12 +139,28 @@ function App() {
   return (
     <ProjectContext.Provider value={ctxValue}>
       <main className="h-screen my-8 flex gap-8">
-        <Sidebar 
-          onStartAddProject={ctxValue.startAddProject}
-          projects={ctxValue.projects}
-          onSelectProject={ctxValue.selectProject}
-          selectedProjectId={ctxValue.projects.selectedProjectId} //
-        />
+        <Sidebar >
+          {ctxValue.projects.map((project) => { 
+            let cssClasses="w-full text-left px-2 py-1 rounded-sm my-1 bg-blue-600 hover:text-stone-100 hover:bg-blue-700"
+            
+            if (project.id === ctxValue.projects.selectedProjectId) {
+                cssClasses += ' bg-blue-700 text-stone-100'
+            } else {
+                cssClasses += ' text-stone-300'
+            }
+            return (
+                <li key={project.id}>
+                    <button 
+                        className={cssClasses}
+                        onClick={() => ctxValue.selectProject(project.id)}
+                        disabled={ctxValue.projects.selectedProjectId === null}
+                    >
+                        {project.title}
+                    </button>
+                </li>
+            );           
+        })}
+        </Sidebar>
           {content}
       </main>
     </ProjectContext.Provider>
