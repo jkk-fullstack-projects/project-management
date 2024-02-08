@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import Button from "../Utilities/Button.jsx";
 import Modal from "../UserInterface/Modal.jsx";
 
-export default function NewTask({ onAdd }) {
+export default function NewTask({ onAddTask }) {
     const [enteredTask, setEnteredTask] = useState('');
     const modal = useRef();
     const task = useRef();
@@ -19,7 +19,7 @@ export default function NewTask({ onAdd }) {
                 modal.current.open();
                 return;
             }
-        onAdd(enteredTask);
+        onAddTask(enteredTask);
         setEnteredTask('');
     }
 

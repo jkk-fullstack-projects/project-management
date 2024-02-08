@@ -9,14 +9,14 @@ export default function SelectedProject({
     onDeleteTask,
     }) 
     {
-    
+
     const formattedDate = new Date(project.deadLine).toLocaleDateString('fi-FI', {
         year: 'numeric',
         month: 'short',
         day: 'numeric'
     });
 
-    const { deleteProject } = useContext(ProjectContext);
+    const { deleteProject, addTask } = useContext(ProjectContext);
 
     return (
         <div className="w-[35rem] mt-16">
@@ -36,7 +36,7 @@ export default function SelectedProject({
                     {project.description}
                     </p>
                 </header>
-            <Tasks onAdd={onAddTask} onDelete={onDeleteTask} tasks={project.tasks} />
+            <Tasks onAdd={addTask} onDelete={onDeleteTask} tasks={project.tasks} />
         </div>
     );
 }

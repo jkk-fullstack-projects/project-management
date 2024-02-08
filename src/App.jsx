@@ -113,6 +113,7 @@ function App() {
     deleteProject: handleDeleteProject,
     cancelAddProject: handleCancelAddProject,
     selProjectId: projectsState.selectedProjectId,
+    addTask: handleAddTask,
   };
 
   const selectedProject = ctxValue.projects.find(
@@ -123,7 +124,7 @@ function App() {
     <SelectedProject
       project={selectedProject}
       onDelete={ctxValue.deleteProject}
-      onAddTask={handleAddTask}
+      onAddTask={ctxValue.addTask}
       onDeleteTask={handleDeleteTask}
     />
   );

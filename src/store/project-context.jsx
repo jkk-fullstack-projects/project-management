@@ -7,6 +7,7 @@ export const ProjectContext = createContext({
     deleteProject: () => {},
     cancelAddProject: () => {},
     selectedProjectId: "",
+    addTask: () => {},
 });
 
 
