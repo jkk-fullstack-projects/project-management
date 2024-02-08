@@ -112,16 +112,17 @@ function App() {
     selectProject: handleSelectProject,
     deleteProject: handleDeleteProject,
     cancelAddProject: handleCancelAddProject,
+    selProjectId: projectsState.selectedProjectId,
   };
 
-  const selectedProject = projectsState.projects.find(
-    (project) => project.id === projectsState.selectedProjectId
+  const selectedProject = ctxValue.projects.find(
+    (project) => project.id === ctxValue.selProjectId
   );
 
   let content = (
     <SelectedProject
       project={selectedProject}
-      onDelete={handleDeleteProject}
+      onDelete={ctxValue.deleteProject}
       onAddTask={handleAddTask}
       onDeleteTask={handleDeleteTask}
     />
