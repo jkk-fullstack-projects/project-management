@@ -6,11 +6,11 @@ import { ProjectContext } from '../../../store/project-context.jsx';
 export default function Sidebar() {
     // Context 
     const { 
-        startAddProject, 
-        projects, 
-        selectedProjectId, 
-        selectProject 
-        }  = useContext(ProjectContext);
+            startAddProject, 
+            projects, 
+            selectedProjectId, 
+            selectProject 
+        } = useContext(ProjectContext);
 
     return (
         <aside className="w-1/3 px-8 py-16 bg-blue-400 text-stone-50 md:w-72 rounded-r-xl">

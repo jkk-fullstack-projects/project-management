@@ -22,97 +22,96 @@ export default function ProjectContextProvider({ children }) {
         selectedProjectId: undefined,
         projects: [],
         selectedProject: undefined,
-      });
+    });
     
-      function handleAddTask(text) {
-        setProjectsState((prevState) => {
-          return {
-            ...prevState,
+    function handleAddTask(text) {
+    setProjectsState((prevState) => {
+        return {
+        ...prevState,
             projects: prevState.projects.map(project => {
-              if(project.id === prevState.selectedProjectId) {
+                if(project.id === prevState.selectedProjectId) {
                 project.tasks = project.tasks.concat({
-                  text, 
-                  id: crypto.randomUUID(),
+                    text, 
+                    id: crypto.randomUUID(),
                 });
-              }
-              return project;
-            })
-          };
-        });
-      }
-    
-      function handleDeleteTask(id) {
+            }
+            return project;
+        })};
+    });
+    }
+
+    function handleDeleteTask(id) {
         setProjectsState((prevState) => {
-          return {
+            return {
             ...prevState,
             projects: prevState.projects.map(project => {
-              if (project.id === prevState.selectedProjectId) {
+                if (project.id === prevState.selectedProjectId) {
                 project.tasks = project.tasks.filter(task => task.id !== id);
-              }
-              return project;
+                }
+                return project;
             })
-          };
+            };
         });
-      }
-    
-      function handleSelectProject(id) {
+    }
+
+    function handleSelectProject(id) {
         setProjectsState((prevState) => {
-          return {
+            return {
             ...prevState,
             selectedProjectId: id,
-          };
+            };
         });
-      }
-    
-      function handleStartAddProject() {
+    }
+
+    function handleStartAddProject() {
         setProjectsState((prevState) => {
-          return {
+            return {
             ...prevState,
             selectedProjectId: null,
-          };
+            };
         });
-      }
-    
-      function handleCancelAddProject() {
+    }
+
+    function handleCancelAddProject() {
         setProjectsState((prevState) => {
-          return {
+            return {
             ...prevState,
             selectedProjectId: undefined,
-          };
+            };
         });
-      }
-    
-      function handleAddProject(projectData) {
+    }
+
+    function handleAddProject(projectData) {
         setProjectsState((prevState) => {
-          const projectId = crypto.randomUUID();
-          const newProject = {
+            const projectId = crypto.randomUUID();
+            const newProject = {
             ...projectData,
             id: projectId,
             tasks: [],
-          };
-    
-          return {
+            };
+
+            return {
             ...prevState,
             selectedProjectId: undefined,
             projects: [...prevState.projects, newProject],
-          };
+            };
         });
-      }
-    
-      function handleDeleteProject() {
+    }
+
+    function handleDeleteProject() {
         setProjectsState((prevState) => {
-          return {
+            return {
             ...prevState,
             selectedProjectId: undefined,
             projects: prevState.projects.filter(
-              (project) => project.id !== prevState.selectedProjectId
+                (project) => project.id !== prevState.selectedProjectId
             ),
-          };
+            };
         });
-      }
-    
-       // Context 
-       const ctxValue = {
+    }
+
+    // Context 
+    const ctxValue = {
         projects: projectsState.projects,
         addProject: handleAddProject,
         startAddProject: handleStartAddProject,
@@ -123,36 +122,18 @@ export default function ProjectContextProvider({ children }) {
         addTask: handleAddTask,
         deleteTask: handleDeleteTask,
         selProject: projectsState.selectedProject,
-      };
-    
-      const selectedProject = ctxValue.projects.find(
-        (project) => project.id === ctxValue.selProjectId
-      );
-    
-      ctxValue.selProject = selectedProject;
-    {/** 
-      let content = (
-        <SelectedProject
-          selectedProject={ctxValue.selProject}
-          onDelete={ctxValue.deleteProject}
-          addTask={ctxValue.addTask}
-          deleteTask={ctxValue.deleteTask}
-        />
-      );
-    
-      if (projectsState.selectedProjectId === null) {
-        content = <NewProject 
-          onAdd={ctxValue.addProject} 
-          onCancel={ctxValue.cancelAddProject}/>
-      } else if (projectsState.selectedProjectId === undefined) {
-        content = <NoProjectSelected 
-          onStartAddProject={ctxValue.startAddProject}/>
-      }
-      */}
+    };
 
-      return <ProjectContext.Provider value={ctxValue}>
+    const selectedProject = ctxValue.projects.find(
+        (project) => project.id === ctxValue.selProjectId
+    );
+
+    ctxValue.selProject = selectedProject;
+
+
+    return <ProjectContext.Provider value={ctxValue}>
         {children}
-      </ProjectContext.Provider>
+    </ProjectContext.Provider>
 };
 
 

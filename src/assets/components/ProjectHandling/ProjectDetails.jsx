@@ -7,14 +7,14 @@ import SelectedProject from '../ProjectHandling/SelectedProject';
 function ProjectDetails() {
     // Access context
     const { 
-        addProject, 
-        startAddProject, 
-        deleteProject, 
-        cancelAddProject, 
-        selProjectId, 
-        addTask, 
-        deleteTask, 
-        selProject 
+            addProject, 
+            startAddProject, 
+            deleteProject, 
+            cancelAddProject, 
+            selProjectId, 
+            addTask, 
+            deleteTask, 
+            selProject 
         } = useContext(ProjectContext);
   
     let content;
@@ -24,7 +24,7 @@ function ProjectDetails() {
     } else if (selProjectId === undefined) {
       content = <NoProjectSelected onStartAddProject={startAddProject} />;
     } else {
-      content = <SelectedProject 
+        content = <SelectedProject 
             selectedProject={selProject} 
             onDelete={deleteProject} 
             addTask={addTask} 
