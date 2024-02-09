@@ -7,7 +7,6 @@ import SelectedProject from "./assets/components/ProjectHandling/SelectedProject
 import { ProjectContext } from "./store/project-context.jsx";
 
 function App() {
-  
   const [projectsState, setProjectsState] = useState({
     // selectedProjectId undefined - doing nothing, selectedProjectId null - adding a new project
     selectedProjectId: undefined,
@@ -31,7 +30,6 @@ function App() {
     });
   }
 
-
   function handleDeleteTask(id) {
     setProjectsState((prevState) => {
       return {
@@ -45,7 +43,6 @@ function App() {
       };
     });
   }
-
 
   function handleSelectProject(id) {
     setProjectsState((prevState) => {
@@ -108,12 +105,14 @@ function App() {
    // Context 
    const ctxValue = {
     projects: projectsState.projects,
+    addProject: handleAddProject,
     startAddProject: handleStartAddProject,
     selectProject: handleSelectProject,
     deleteProject: handleDeleteProject,
     cancelAddProject: handleCancelAddProject,
     selProjectId: projectsState.selectedProjectId,
     addTask: handleAddTask,
+    deleteTask: handleDeleteTask,
   };
 
   const selectedProject = ctxValue.projects.find(
@@ -122,26 +121,28 @@ function App() {
 
   let content = (
     <SelectedProject
-      project={selectedProject}
+      selectedProject={selectedProject}
       onDelete={ctxValue.deleteProject}
-      onAddTask={ctxValue.addTask}
-      onDeleteTask={handleDeleteTask}
+      addTask={ctxValue.addTask}
+      deleteTask={ctxValue.deleteTask}
     />
   );
 
   if (projectsState.selectedProjectId === null) {
     content = <NewProject 
-      onAdd={handleAddProject} 
+      onAdd={ctxValue.addProject} 
       onCancel={ctxValue.cancelAddProject}/>
   } else if (projectsState.selectedProjectId === undefined) {
     content = <NoProjectSelected 
-      onStartAddProject={handleStartAddProject}/>
+      onStartAddProject={ctxValue.startAddProject}/>
   }
+
+  console.log("Appissa: ", ctxValue.addTask)
 
   return (
     <ProjectContext.Provider value={ctxValue}>
       <main className="h-screen my-8 flex gap-8">
-        <Sidebar >
+        <Sidebar>
           {ctxValue.projects.map((project) => { 
             let cssClasses="w-full text-left px-2 py-1 rounded-sm my-1 bg-blue-600 hover:text-stone-100 hover:bg-blue-700"
             

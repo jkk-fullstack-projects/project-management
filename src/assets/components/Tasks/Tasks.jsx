@@ -4,12 +4,14 @@ import NewTask from "./NewTask.jsx"
 import Button from "../Utilities/Button.jsx";
 import { ProjectContext } from '../../../store/project-context.jsx';
 
-export default function Tasks({ tasks, onAdd, onDelete }) {
+export default function Tasks({ tasks }) {
+    // Context
+    const {addTask, deleteTask} = useContext(ProjectContext)
 
     return (
         <section>
         <h2 className="text-2xl font-bold text-stone-700 mb-4">Tasks</h2>
-        <NewTask onAddTask={onAdd} />
+        <NewTask addTask={addTask} />
         {tasks.length === 0 && (
           <p className="text-stone-800 my-4">
                 Tälle projektille ei ole vielä tehtäviä.
@@ -22,7 +24,7 @@ export default function Tasks({ tasks, onAdd, onDelete }) {
                             <span>{task.text}</span>
                                 <Button
                                     className="text-stone-700 hover:text-red-500"
-                                    onClick={() => onDelete(task.id)}
+                                    onClick={() => deleteTask(task.id)}
                                 >
                             Poista tehtävä</Button>
                         </li>

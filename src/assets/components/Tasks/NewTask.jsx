@@ -1,10 +1,11 @@
 
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 
 import Button from "../Utilities/Button.jsx";
 import Modal from "../UserInterface/Modal.jsx";
+import { ProjectContext } from "../../../store/project-context.jsx";
 
-export default function NewTask({ onAddTask }) {
+export default function NewTask() {
     const [enteredTask, setEnteredTask] = useState('');
     const modal = useRef();
     const task = useRef();
@@ -19,9 +20,12 @@ export default function NewTask({ onAddTask }) {
                 modal.current.open();
                 return;
             }
-        onAddTask(enteredTask);
+        addTask(enteredTask);
         setEnteredTask('');
     }
+    
+    // Context
+    const { addTask } = useContext(ProjectContext);
 
     return (
         <>
