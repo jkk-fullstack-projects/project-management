@@ -32,7 +32,7 @@ export default function SelectedProject() {
                         {selProject.description}
                     </p>
                 </header>
-            <Tasks onAdd={addTask} onDelete={deleteTask} tasks={selProject.tasks} />
+            <Tasks />
         </div>
     );
 }
