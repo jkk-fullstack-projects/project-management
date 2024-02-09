@@ -11,6 +11,7 @@ function App() {
     // selectedProjectId undefined - doing nothing, selectedProjectId null - adding a new project
     selectedProjectId: undefined,
     projects: [],
+    selectedProject: undefined,
   });
 
   function handleAddTask(text) {
@@ -88,8 +89,6 @@ function App() {
     });
   }
 
-  console.log(projectsState)
-
   function handleDeleteProject() {
     setProjectsState((prevState) => {
       return {
@@ -113,15 +112,18 @@ function App() {
     selProjectId: projectsState.selectedProjectId,
     addTask: handleAddTask,
     deleteTask: handleDeleteTask,
+    selProject: projectsState.selectedProject,
   };
 
   const selectedProject = ctxValue.projects.find(
     (project) => project.id === ctxValue.selProjectId
   );
 
+  ctxValue.selProject = selectedProject;
+
   let content = (
     <SelectedProject
-      selectedProject={selectedProject}
+      selectedProject={ctxValue.selProject}
       onDelete={ctxValue.deleteProject}
       addTask={ctxValue.addTask}
       deleteTask={ctxValue.deleteTask}
@@ -136,8 +138,6 @@ function App() {
     content = <NoProjectSelected 
       onStartAddProject={ctxValue.startAddProject}/>
   }
-
-  console.log("Appissa: ", ctxValue.addTask)
 
   return (
     <ProjectContext.Provider value={ctxValue}>
