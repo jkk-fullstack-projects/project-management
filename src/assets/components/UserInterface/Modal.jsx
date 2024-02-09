@@ -1,7 +1,7 @@
-import { forwardRef, useImperativeHandle, useRef } from "react";
-import { createPortal } from "react-dom";
+import { forwardRef, useImperativeHandle, useRef } from 'react';
+import { createPortal } from 'react-dom';
 
-import Button from "../Utilities/Button.jsx";
+import Button from '../Utilities/Button.jsx';
 
 const Modal = forwardRef(function Modal({children, buttonText}, ref) {
     const dialog = useRef();

@@ -1,9 +1,9 @@
 
 import { useState, useRef, useContext } from "react";
 
-import Button from "../Utilities/Button.jsx";
-import Modal from "../UserInterface/Modal.jsx";
-import { ProjectContext } from "../../../store/project-context.jsx";
+import Button from '../Utilities/Button.jsx';
+import Modal from '../UserInterface/Modal.jsx';
+import { ProjectContext } from '../../../store/project-context.jsx';
 
 export default function NewTask() {
     const [enteredTask, setEnteredTask] = useState('');

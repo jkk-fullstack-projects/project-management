@@ -1,7 +1,7 @@
-import { useContext } from "react";
+import { useContext } from 'react';
 
-import Tasks from "../Tasks/Tasks";
-import { ProjectContext } from "../../../store/project-context";
+import Tasks from '../Tasks/Tasks';
+import { ProjectContext } from '../../../store/project-context';
 
 export default function SelectedProject() {
     

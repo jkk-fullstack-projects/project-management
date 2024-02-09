@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 
-import NewTask from "./NewTask.jsx"
-import Button from "../Utilities/Button.jsx";
+import NewTask from './NewTask.jsx';
+import Button from '../Utilities/Button.jsx';
 import { ProjectContext } from '../../../store/project-context.jsx';
 
 export default function Tasks() {
